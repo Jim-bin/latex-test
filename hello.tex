@@ -6,6 +6,32 @@
 % 导入中文宏
 \usepackage{ctex}
 \newcommand\degree{^\circ}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
+
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
 
 
 \author{\kaishu }
@@ -16,8 +42,211 @@
 \section{第一章}
 
 
-    \[y=sin(x) + cos(x)\]  
+    \[y=sin(x) + cos(x)\]
+    
+\section{循环}
+    \subsection*{while 循环输出平方数}
+        \begin{enumerate}
+            \item 打印出小于某数的平方数
+                \begin{lstlisting}
+#include<stdio.h>
 
-     
+int main(void){
+    int i, n;
+    printf("This program prints a table of squares.\n");
+    printf("Enter number of entries in table: \n");
+    scanf("%d", &n);
+
+    i = 1;
+    while (i<=n){
+        printf("%10d%10d\n", i, i * i);
+        i++;
+    }
+    return 0;
+}
+                \end{lstlisting}
+
+            \item 数列求和: sum.c
+                \begin{lstlisting}
+/* 数列求和*/
+
+#include<stdio.h>
+
+int main(void){
+    int n, sum = 0;
+    printf("This program sums a series of integers.\n");
+    printf("Enter a integers (0 to terminate): ");
+
+    scanf("%d", &n);
+    while(n != 0){
+        sum += n;
+        scanf("%d", &n);
+    }
+    printf("The sum is: "%d\n", sum);
+
+    return 0;
+}
+                \end{lstlisting}
+
+            \subsection*{do语句}
+            先执行一次函数体，再进行条件判断
+                \item do语句
+                \begin{lstlisting}
+/* 计算数字的位数 */
+#include<stdio.h>
+int main(void){
+    int digits = 0, n;
+    printf("Enther a nonnegative integer: ");
+    scanf("%d", &n);
+
+    do {
+        n /= 10;
+        digits++;
+    } while(n > 0);
+
+    printf("The number has %d digit(s).\n", digits);
+
+    return 0;
+}
+                \end{lstlisting}
+
+            \subsection*{for语句}
+            \item for循环计算平方数
+            \begin{lstlisting}
+include<stdio.h>
+int main(void)
+int i;
+printf("This program prints a table of squares. \n")
+printf("Enter number of entries in table: ");
+scanf("d", &n);
+
+for (i =1: i <=n: i++)
+    printf("%10d%10d\n", i, i * i);
+
+return 0
+            \end{lstlisting}
+
+            \item break语句，跳出当前循环
+            
+            \begin{lstlisting}
+/*  读入数字，j计算之和，遇到0则截止 */
+#include<stdio.h>
+
+int main(void){
+    int n = 0, sum = 0;
+    int i;
+    printf("Enter a series of integer.\n");
+    while (n < 5) {
+        scanf("%d", &i);
+        if (i == 0)
+            break;
+        sum += i;
+        n++;
+    }
+    printf("The sum of integers is: %d",  sum);   
+}               
+            
+            \end{lstlisting}
+            
+            \item continue语句，跳出当次循环，继续执行剩余循环
+            
+            \begin{lstlisting}
+/*  读入数字，计算之和，遇到0,跳过当次循环，继续执行下次循环 */
+#include<stdio.h>
+
+int main(void){
+    int n = 0, sum = 0;
+    int i;
+    printf("Enter a series of integer.\n");
+    while (n < 5) {
+        scanf("%d", &i);
+        if (i == 0)
+            continue;
+        sum += i;
+        n++;
+    }
+    printf("The sum of integers is: %d",  sum);   
+}
+            \end{lstlisting}
+            
+    
+\end{enumerate}
+
+\section*{数组}
+\subsection*{一维数组}
+\begin{enumerate}
+
+\item 数组初始化
+\item 反向输出数列
+    
+\begin{lstlisting}
+// 反向输出数组
+#include<stdio.h>
+#define N 5
+
+int main(void){
+    int a[N], i;
+    printf("Enter %d numbers: ", N);
+    for (i = 0; i < N; i++)
+        scanf("%d",  &a[i]);
+    printf("In reverse order:");
+    
+    for (i = N - 1; i >= 0; i--)
+        printf(" %d", a[i]);
+    printf("\n");
+
+    return 0;
+}
+\end{lstlisting}
+
+\item 数组初始化：如果初始化比数组短，后续元素默认为0
+
+\begin{lstlisting}
+int a[10] = {1,2,3,4};
+// int a[10] = {1,2,3,4,5,0,0,0,0,0} 
+int a[10]={0};
+// int a[10] = {0,0,0,0,0,0,0,0,0,0};
+// 给定了所有元素，可省去个数
+int a[] = {1,2,3,4,5,6,7,8,9,10};
+// 指定位置元素为0，C99
+int a[15] = {[2] = 29, [8] = 7, [14] = 100};
+// 数组长度为24
+int a[] = {[2] = 2, [23] = 11, [6] = 56};
+\end{lstlisting}
+
+\item 检查一个数是否有重复数字
+
+\begin{lstlisting}
+// 检查数有没有重复数字
+#include<stdbool.h> // only for c99
+#include<stdio.h>
+int main(void){
+    bool digit_seen[10] = {false};
+    int digit;
+    long n;
+
+    printf("Enter a number: ");
+    scanf("%ld", &n);
+
+    while (n > 0) {
+        digit = n % 10;
+        if (digit_seen[digit])
+            break;
+        digit_seen[digit] = true;
+        n /=  10;
+    }
+
+    if (n > 0)
+        printf("Repeated digit\n");
+    else
+        printf("No repeated  digit\n");
+    return  0;
+}
+\end{lstlisting}
+
+\end{enumerate}
+
+
+
 
 \end{document}

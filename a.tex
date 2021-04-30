@@ -1,0 +1,22 @@
+%!TEX program = xelatex
+
+\documentclass[UTF8]{ctexart}
+\usepackage{xeCJK}
+\setCJKmainfont[ItalicFont=方正楷体简体,BoldFont=FZHei-B01S]{Source Han Serif SC}
+\renewcommand{\songti}{\CJKfontspec{Source Han Serif SC}}%用命令\songti调用思源宋体
+\newcommand{\fzkaiti}{\CJKfontspec{方正楷体简体}}%用命令\fzkaiti调用方正楷体简体
+\begin{document}
+    我们对\LaTeX 中\textbf{中文字体}的\textit{设置}进行介绍。\\
+    {\lishu 下面}是ctex宏包中自带的字体，可以直接使用；相应得，我们在自定义字体的时候，{\fzkaiti 不能}和这些字体的命令重名。\\
+   \begin{tabular}{|lll|}
+        \hline
+        \songti 宋体    & SimSun          &\verb|\songti 宋体|   \\
+        \kaishu 楷体    & KaiTi           &\verb|\kaishu 楷体|   \\
+        \heiti 黑体     & SimHei          &\verb|\heiti 黑体|    \\
+        \yahei 微软雅黑  & Microsoft YaHei &\verb|\yahei 微软雅黑| \\
+        \fangsong 仿宋  & FangSong        &\verb|\fangsong 仿宋| \\
+        \youyuan 幼圆   & YouYuan         &\verb|\youyuan 幼圆|  \\
+        \lishu 隶书     & LiSu            &\verb|\lishu 隶书|    \\
+        \hline 	
+    \end{tabular} 	
+\end{document}

@@ -1,0 +1,5 @@
+"D:\Program Files\Microsoft VS Code\Code.exe" "D:\Program Files\Microsoft VS Code\resources\app\out\cli.js" -g "%f":"%l"
+
+"C:\lvse\Microsoft VS Code\Code.exe" "C:\lvse\Microsoft VS Code\resources\app\out\cli.js" -g "%f":"%l"
+
+"C:\lvse\Microsoft VS Code\Code.exe" "C:\lvse\Microsoft VS Code\resources\app\out\cli.js" -g "%f":"%l"
